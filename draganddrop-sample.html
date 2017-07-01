@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet" type="text/css">
+    <title>FileAPIで画像を選択またはドラッグアンドドロップし、表示</title>
+    <style>
+		html, body {
+			font-size: 14px;
+			text-align: center;
+			font-family: 'Roboto Condensed', sans-serif,"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro";
+		}
+		
+		h1 {
+			font-size: 1.5em;
+		}
+		
+		.file{
+			display: inline-block;
+			overflow: hidden;
+			position: relative;
+			padding: .5em 1em;
+			border: 2px solid #DCDCDC;
+			background: #efefef;
+			font-size: 1.5em;
+			color: #575757;
+			transition: 0.5s;
+		}
+		.file:hover{
+			border: 2px solid #F4D60D;
+			color: #F4D60D;
+		}
+		.file input[type="file"]{
+			opacity: 0;
+			filter: progid;DXImageTransform.Microsoft.Alpha(opacity=0);
+			position: absolute;
+			right: 0;
+			top: 0;
+			margin: 0;
+			font-size: 100px;
+			cursor: pointer;
+		}
+		
+		div#drop-zone {
+			margin: 1rem auto;
+			width: 20rem;
+			height: 10rem;
+			border: 2px solid #DCDCDC;
+			background: #efefef;
+			line-height: 10rem;
+			font-size: 2em;
+			color: #D0D0D0;
+			border-radius: 0.5em;
+			transition: 0.5s;
+		}
+		div#drop-zone:hover {
+			border: 2px solid #F4D60D;
+			color: #F4D60D;
+		}
+		
+		div#print_image {
+			margin: 1rem auto;
+		}
+		
+		textarea {
+			width: 50%;
+			height: 10rem;
+			margin: 1rem auto;
+		}
+		.small { font-size: 14px; }
+		.normal { font-weight: normal; }
+		.gray { color: #575757; }
+    </style>
+</head>
+<body>
+
+
+
+<h1>By File API, select or drag and drop to display the image<br>
+<span class="small normal gray">File API で画像を選択またはドラッグアンドドロップし、表示</span></h1>
+
+    <!--<p>Choose IMG!</p>-->
+    <div class="file">
+    	CLICK HERE
+        <input type="file" id="file-image" accept="image/*">
+    </div>
+    
+    <p>or...</p>
+    
+    <div id="drop-zone">DROP IMGs HERE</div>
+    
+    <div id="print_img">
+        <p id="width-height">width: height: </p>
+        <p>IMGs that you selected or droped...<!--↓以下に画像を表示--></p>
+        <img id="image" alt="">
+        <p>URL of IMGs that you selected or droped...<!--↓以下にdataURLを表示--></p>
+        <textarea name="name" id="print_DataURL" readonly></textarea>
+    </div>
+
+
+<blockquote>References<!--参考サイト：--><br>
+http://cartman0.hatenablog.com/entry/2015/06/08/131855<br>
+http://tsmd.hateblo.jp/entry/2013/05/09/045110<br>
+http://wordpress-design.net/archives/1531
+</blockquote>
+
+<script>
+	(function() {
+		/*
+		http://www.html5rocks.com/ja/tutorials/file/dndfiles/
+		http://www.pori2.net/html5/File/040.html
+		*/
+		var print_img_id = 'print_img';
+		var print_DataURL_id = 'print_DataURL';
+		if (checkFileApi()){
+			//ファイルを選択
+			var file_image = document.getElementById('file-image');
+			file_image.addEventListener('change', selectReadfile, false);
+			
+			//ドラッグオンドロップ
+			var dropZone = document.getElementById('drop-zone');
+			dropZone.addEventListener('dragover', handleDragOver, false);
+			dropZone.addEventListener('drop', handleDragDropFile, false);
+		}
+		
+		// FileAPIに対応しているか
+		function checkFileApi() {
+			　// Check for the various File API support.
+			if (window.File && window.FileReader && window.FileList && window.Blob) {
+				// Great success! All the File APIs are supported.
+				return true;
+			}
+			alert('The File APIs are not fully supported in this browser.');
+			return false;
+		}
+		
+		//ファイルが選択されたら読み込む
+		function selectReadfile(e) {
+			var file = e.target.files;
+			var reader = new FileReader();
+			//dataURL形式でファイルを読み込む
+			reader.readAsDataURL(file[0]);
+			//ファイルの読み込みが終了したときの処理
+			reader.onload = function(){
+				readImage(reader, print_img_id, print_DataURL_id);
+			}
+		}
+		
+		//ドラッグオンドロップ
+		function handleDragOver(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			e.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+		}
+		function handleDragDropFile(e) {
+			e.stopPropagation();
+			e.preventDefault();
+			var files = e.dataTransfer.files; // FileList object.
+			var file = files[0];
+			var reader = new FileReader();
+			//dataURL形式でファイルを読み込む
+			reader.readAsDataURL(file);
+			
+			//ファイルの読み込みが終了したときの処理
+			reader.onload = function(){
+				readImage(reader, print_img_id, print_DataURL_id);
+			}
+		
+		}
+		
+		//ファイルの読み込みが終了したときの処理
+		function readImage(reader, print_image_id, print_DataURL_id ) {
+			//ファイルの読み取り後の処理
+			var result_DataURL = reader.result;
+			
+			//読み込んだ画像とdataURLを書き出す
+			var img = document.getElementById('image');
+			var src = document.createAttribute('src');
+			src.value = result_DataURL;
+			img.setAttributeNode(src);
+			document.getElementById(print_DataURL_id).value = result_DataURL;
+			printWidthHeight('image', 'width-height');
+		}
+		
+		//width, height表示
+		function printWidthHeight( img_id, width_height_id ) {
+			var img = document.getElementById(img_id);
+			var w = img.naturalWidth;
+			var h = img.naturalHeight;
+			document.getElementById(width_height_id).innerHTML = 'width:' + w + ' height:' + h;
+		}
+	})();
+</script>
+</body>
+</html>

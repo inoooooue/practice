@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>フォントまわりのCSSプロパティ覚書</title>
+<link href="css/style_font.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+<article>
+
+<ol>
+	<li><a href="#">アンチエイリアスを設定する</a></li>
+	<li><a href="#">テキスト選択時のハイライトカラーを変更する</a></li>
+	<li><a href="#">先頭の文字を字下げする</a></li>
+	<li><a href="#">2行目以降を字下げする</a></li>
+	<li><a href="#">先頭の文字をどうにかする</a></li>
+	<li><a href="#">最初の行だけどうにかする</a></li>
+	<li><a href="#">文字を改行させない</a></li>
+	<li><a href="#"></a></li>
+	<li><a href="#"></a></li>
+	<li><a href="#"></a></li>
+	<li><a href="#"></a></li>
+	<li><a href="#"></a></li>
+	<li><a href="#"></a></li>
+</ol>
+
+
+<section>
+    <h2><span>1.&nbsp;アンチエイリアスを設定する</span></h2>
+        <div class="sample">
+            <p class="anti-aliasing">アンチエイリアスを設定しています。</p>
+            <p>アンチエイリアスを設定していません。</p>
+        </div>
+        <p class="text-small text-gray">bodyに指定されることが多い。IE未対応。</p>
+</section>
+
+
+
+<section>
+    <h2><span>2.&nbsp;テキスト選択時のハイライトカラーを変更する</span></h2>
+    <p><code>::selection</code>を使用する。Firefoxに対応させるために<code>::moz-selection</code>も記述。</p>
+    <p>今回は背景色は水色、文字色は白に変更してみました。</p>
+</section>
+
+
+
+<section>
+	<h2><span>3.&nbsp;先頭の文字を字下げする</span></h2>
+    <p><code>text-indent</code>を利用する。<code>text-indent: 1em;</code>で一文字分字下げできます。</p>
+    <div class="sample">
+        <p class="text-indent">この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</p>
+      </div>
+</section>
+
+
+
+<section>
+	<h2><span>4.&nbsp;2行目以降を字下げする</span></h2>
+    <p>注釈や注意書きなどを表す文章を表示するときによく使う。（「※」など。）</p>
+    <p><code>margin-left: 1em;</code>で左側に一文字分の余白を作って、<code>text-indent: -1em;</code>で一文字分文字を左に寄せる。</p>
+    <div class="sample">
+        <p class="text-hanging-indent">※この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</p>
+    </div>
+</section>
+
+
+
+<section>
+	<h2><span>5.&nbsp;先頭の文字をどうにかする</span></h2>
+    <p>先頭の文字だけ違うスタイルをあてたい時は、<code>:first-letter</code>という擬似要素を使います。</p>
+    <h3>先頭のフォントサイズを大きくする</h3>
+    <div class="sample">
+        <p class="text-dropcap-01">この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</p>
+    </div>
+    <h3>背景色をつけたり、2文字目以降のテキストが回り込むようなスタイルを指定</h3>
+    <div class="sample">
+        <p class="text-dropcap-02">この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</p>
+    </div>
+</section>
+
+
+
+<section>
+	<h2><span>6.&nbsp;最初の行だけどうにかする</span></h2>
+	<p>最初の行に違うスタイルをあてたい時は、<code>:first-line</code>という擬似要素を使います。</p>
+    <div class="sample">
+    <p class="text-dropline">この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。</p>
+    </div>
+</section>
+
+
+
+<section>
+	<h2><span>7.&nbsp;文字を改行させない</span></h2>
+    <p>改行させたくない要素に<code>white-space: nowrap;</code>を指定する。</p>
+    <p>特に、テーブルのセルの中で不自然が改行が勝手にされてしまうのを予防するのによく使いそう。</p>
+    <div class="sample">
+      <div class="sample">
+        <h3>指定なし</h3>
+        <table>
+          <tbody>
+            <tr>
+              <th>見出し1見出し1見出し1見出し1見出し1</th>
+              <th>見出し2見出し2見出し2</th>
+              <th>見出し3見出し3見出し3見出し3</th>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3>見出し1に指定</h3>
+        <table>
+          <tbody>
+            <tr>
+              <th class="text-nowrap">見出し1見出し1見出し1見出し1見出し1</th>
+              <th>見出し2見出し2見出し2</th>
+              <th>見出し3見出し3見出し3見出し3</th>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</section>
+
+
+
+<section>
+	<h2><span>8.&nbsp;文字を改行させる</span></h2>
+    <p>改行させたい要素に<code>word-wrap: break-word;</code>指定する。</p>
+    <p>英文やながーいURLを表示するときによく使う。スマホサイトだと特に使ったほうがよさげ。</p>
+    <!--<div class="sample">
+        <p class="text-wrap">aaaaaaaaa&nbsp;bbbbbbbbbbbbbb&nbsp;ccccccccccccccccccccc&nbsp;dddddddddddddddddd&nbsp;eeeeeeeeeeeeeeeeeeeeeeeeeeeee&nbsp;fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff&nbsp;ggggggggggggggggggggggggggggggggggggggggggggggggg</p>
+    </div>-->
+</section>
+
+
+
+<section>
+	<h2></h2>
+</section>
+<section>
+	<h2></h2>
+</section>
+<section>
+	<h2></h2>
+</section>
+
+</article>
+
+
+
+<p class="mt20">
+    <cite>
+    Reference:<br>
+    NxWorld<br>
+    http://www.nxworld.net/tips/useful-css-properties-and-snippets-for-text-styling.html
+    </cite>
+</p>
+
+</body>
+</html>

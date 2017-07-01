@@ -1,0 +1,173 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+/*//////////////////////////////////////////////
+2015/11/26
+フォントまわりのスタイルに関するCSSプロパティ覚書
+
+0. リセット
+1. ベース
+2. 汎用パーツ
+3. フォントまわりのCSSプロパティ覚書
+4.
+5.
+///////////////////////////////////////////////*/
+
+
+/*======================================
+0.リセット
+======================================*/
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, a, p, blockquote, cite, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    font-weight: normal;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+
+
+
+/*======================================
+1.ベース
+======================================*/
+
+body {
+	width: 1000px;
+	margin: 0 auto;
+	font-size: 14px;
+	font-family: "メイリオ", Meiryo,"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",  Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+	color: #333333;
+	word-break: break-all;
+}
+
+section {
+	margin : 30px 0 0 0;
+}
+
+h1 {
+	font-size: 150%;
+}
+
+h2 {
+	width: 100%;
+	font-size: 150%;
+}
+	h2 span {
+		padding: 0 .5em;
+		background: linear-gradient(transparent 50%, #AECFCB 0%);
+	}
+
+p { line-height: 1.8; }
+
+
+strong, em { font-weight: bold; }
+
+ol {
+	padding: 10px 10px 10px 40px;
+}
+
+a:link {
+	color: #AECFCB;
+}
+
+code {
+	padding: .2em .5em;
+	margin: 0 .3em;
+	background: #D9D9D9;
+	color: #000;
+	border-radius: 0.4em;
+	font-family: Courier,Consolas,sans-serif;
+}
+
+cite {
+	display: block;
+	position: relative;
+	padding: 30px;
+	background: #efefef;
+}
+	cite:before, cite:after {
+		position: absolute;
+		font-size: 500%;
+		font-family:Georgia, "Times New Roman", Times, serif;
+		color:#D1D1D1;
+	}
+	cite:before {
+		content: "“";
+		top: 5px;
+		left: 5px;
+		line-height: 1em;
+	}
+	cite:after {
+		content: "”";
+		bottom: 5px;
+		right: 10px;
+		line-height: 1em;
+	}
+
+
+/*======================================
+2. 汎用パーツ
+======================================*/
+
+.text-bold { font-weight: bold; }
+.text-large { font-size: 120%; }
+.text-small { font-size: 85%; }
+	
+.text-red { color: #F00; }
+.text-blue { color: #080; }
+.text-gray { color: #737373; }
+
+
+.mt0  { margin-top: 0; }
+.mt5  { margin-top: 5px; }
+.mt10 { margin-top: 10px; }
+.mt15 { margin-top: 15px; }
+.mt20 { margin-top: 20px; }
+.mt25 { margin-top: 25px; }
+.mt30 { margin-top: 30px; }
+.mb5  { margin-bottom: 5px; }
+.mb10 { margin-bottom: 10px; }
+.mb15 { margin-bottom: 15px; }
+.mb20 { margin-bottom: 20px; }
+.mb25 { margin-bottom: 25px; }
+.mb30 { margin-bottom: 30px; }
+.ml5  { margin-left: 5px; }
+.ml10 { margin-left: 10px; }
+.ml15 { margin-left: 15px; }
+.ml20 { margin-left: 20px; }
+.ml25 { margin-left: 25px; }
+.ml30 { margin-left: 30px; }
+.mr5  { margin-right: 5px; }
+.mr10 { margin-right: 10px; }
+.mr15 { margin-right: 15px; }
+.mr20 { margin-right: 20px; }
+.mr25 { margin-right: 25px; }
+.mr30 { margin-right: 30px; }
+
+
+
+/*======================================
+3. フォントまわりのCSSプロパティ覚書
+======================================*/
+
+/* アンチエイリアスを設定 */
+.anti-aliasing {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* テキスト選択時のハイライトカラーを変更 */
+::selection {
+	background: #AECFCB;
+	color: #FFFFFF;
+}
+::moz-selection {
+	background: #AECFCB;
+	color: #FFFFFF;
+}
